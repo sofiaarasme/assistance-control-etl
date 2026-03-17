@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 162 35% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 162 20% 94%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 210 20% 95%;
+    --muted-foreground: 215 10% 50%;
+
+    --accent: 162 35% 90%;
+    --accent-foreground: 162 35% 25%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 162 35% 55%;
+
+    --radius: 0.75rem;
+
+    /* Semáforo */
+    --semaforo-verde: 145 63% 42%;
+    --semaforo-verde-bg: 145 63% 95%;
+    --semaforo-amarillo: 45 93% 47%;
+    --semaforo-amarillo-bg: 45 93% 95%;
+    --semaforo-rojo: 0 72% 55%;
+    --semaforo-rojo-bg: 0 72% 96%;
+    --semaforo-gris: 210 10% 60%;
+    --semaforo-gris-bg: 210 10% 95%;
+
+    /* Brand */
+    --serimar-dark: 215 25% 20%;
+    --serimar-teal: 162 35% 55%;
+    --serimar-teal-dark: 162 35% 40%;
+    --serimar-light-green: 162 30% 92%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 162 35% 40%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 162 20% 95%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 210 15% 91%;
+    --sidebar-ring: 162 35% 55%;
+  }
+
+  .dark {
+    --background: 215 25% 8%;
+    --foreground: 210 20% 95%;
+    --card: 215 25% 12%;
+    --card-foreground: 210 20% 95%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 162 35% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 20% 18%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 215 20% 18%;
+    --muted-foreground: 215 10% 55%;
+    --accent: 162 35% 20%;
+    --accent-foreground: 162 35% 80%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 162 35% 55%;
+    --sidebar-background: 215 25% 10%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 162 35% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 20% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 18%;
+    --sidebar-ring: 162 35% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .semaforo-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .semaforo-verde {
+    background-color: hsl(var(--semaforo-verde-bg));
+    color: hsl(var(--semaforo-verde));
+  }
+  .semaforo-amarillo {
+    background-color: hsl(var(--semaforo-amarillo-bg));
+    color: hsl(var(--semaforo-amarillo));
+  }
+  .semaforo-rojo {
+    background-color: hsl(var(--semaforo-rojo-bg));
+    color: hsl(var(--semaforo-rojo));
+  }
+  .semaforo-gris {
+    background-color: hsl(var(--semaforo-gris-bg));
+    color: hsl(var(--semaforo-gris));
+  }
+}

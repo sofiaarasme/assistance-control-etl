@@ -1,0 +1,54 @@
+# -----------------------------
+# Secrets / environment files
+# -----------------------------
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+*service-account*.json
+credentials*.json
+
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.python-version
+
+.venv/
+venv/
+env/
+.venv_pdf/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# -----------------------------
+# Frontend (Vite / Node / Bun)
+# -----------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# -----------------------------
+# Runtime / generated data
+# -----------------------------
+state/*.json
+data/processed/*.csv
+data/processed/*.json
+
+# -----------------------------
+# Editor / OS noise
+# -----------------------------
+.DS_Store
+.idea/
+.vscode/
