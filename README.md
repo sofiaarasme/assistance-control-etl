@@ -1,4 +1,4 @@
-# YOLO_ETL
+# ASSISTANCE CONTROL ETL & SITE
 
 ETL para procesar reportes crudos de asistencia en CSV desde Google Drive y generar datasets limpios para un frontend en React.
 
