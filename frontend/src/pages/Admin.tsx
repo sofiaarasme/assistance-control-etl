@@ -16,15 +16,21 @@ export default function Admin() {
 
   if (!user || user.role !== "admin") return <Navigate to="/" replace />;
 
-  const handleAdd = (e: React.FormEvent) => {
+  const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!nombre || !email || !password) return;
-    addUser(
-      { nombre, email, role, departamento: role === "departamento" ? depto : undefined },
-      password
-    );
-    setNombre(""); setEmail(""); setPassword("");
-    setMsg("Usuario creado exitosamente");
+    try {
+      await addUser(
+        { nombre, email, role, departamento: role === "departamento" ? depto : undefined },
+        password
+      );
+      setNombre("");
+      setEmail("");
+      setPassword("");
+      setMsg("Usuario creado exitosamente");
+    } catch (error) {
+      setMsg(error instanceof Error ? error.message : "No se pudo crear usuario");
+    }
     setTimeout(() => setMsg(""), 3000);
   };
 
@@ -39,8 +45,13 @@ export default function Admin() {
           </div>
           <div>
             <h2 className="text-lg font-bold text-foreground">Administración de Usuarios</h2>
-            <p className="text-xs text-muted-foreground">Crear y gestionar usuarios por departamento</p>
+            <p className="text-xs text-muted-foreground">Perfiles de acceso en Supabase</p>
           </div>
+        </div>
+
+        <div className="rounded-md border border-border bg-muted/30 p-4 text-xs text-muted-foreground">
+          En modo sin backend, los usuarios de login se crean en Supabase &gt; Authentication &gt; Users.
+          Luego se registra su rol/departamento en la tabla `public.profiles`.
         </div>
 
         {/* Create user form */}
@@ -114,7 +125,18 @@ export default function Admin() {
                   </div>
                 </div>
                 {u.id !== user.id && (
-                  <button onClick={() => removeUser(u.id)} className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive">
+                  <button
+                    onClick={async () => {
+                      try {
+                        await removeUser(u.id);
+                        setMsg("Perfil eliminado");
+                      } catch (error) {
+                        setMsg(error instanceof Error ? error.message : "No se pudo eliminar");
+                      }
+                      setTimeout(() => setMsg(""), 3000);
+                    }}
+                    className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                  >
                     <Trash2 className="h-4 w-4" />
                   </button>
                 )}

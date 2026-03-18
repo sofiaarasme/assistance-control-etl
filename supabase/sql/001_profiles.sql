@@ -30,10 +30,11 @@ execute procedure public.set_profiles_updated_at();
 alter table public.profiles enable row level security;
 
 -- Usuarios autenticados pueden ver su propio perfil
-create policy if not exists "profiles_select_own"
-on public.profiles
-for select
-using (auth.uid() = id);
+CREATE POLICY "profiles_select_own"
+ON public.profiles
+FOR SELECT
+TO authenticated
+USING ((SELECT auth.uid()) = id);
 
 -- Service role maneja inserción/actualización/borrado vía backend.
 

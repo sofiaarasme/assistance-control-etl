@@ -19,7 +19,7 @@ import {
 import type { ResumenResponse, MetadataResponse, CatalogosResponse } from "@/types/asistencia";
 
 const Index = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const isAdmin = user?.role === "admin";
   const userDepartamento = user?.departamento || "";
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -121,6 +121,10 @@ const Index = () => {
     setFilters(newFilters);
     setPage(1);
   };
+
+  if (loading) {
+    return <div className="flex h-screen items-center justify-center text-sm text-muted-foreground">Cargando sesión...</div>;
+  }
 
   if (!user) return <Navigate to="/login" replace />;
 

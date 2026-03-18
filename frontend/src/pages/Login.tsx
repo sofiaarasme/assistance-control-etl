@@ -5,17 +5,18 @@ import serimarLogo from "@/assets/serimar-logo-dark.png";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (login(email, password)) {
+    const ok = await login(email, password);
+    if (ok) {
       navigate("/");
     } else {
       setError("Correo o contraseña incorrectos");
@@ -67,20 +68,13 @@ export default function Login() {
 
           <button
             type="submit"
+            disabled={loading}
             className="flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-primary font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             <LogIn className="h-4 w-4" />
-            Iniciar Sesión
+            {loading ? "Validando..." : "Iniciar Sesión"}
           </button>
         </form>
-
-        <div className="rounded-lg bg-muted/50 p-3 text-[11px] text-muted-foreground">
-          <p className="mb-1 font-semibold">Usuarios de prueba:</p>
-          <p>admin@serimar.com / admin123 (Admin)</p>
-          <p>produccion@serimar.com / prod123</p>
-          <p>calidad@serimar.com / cal123</p>
-          <p>mantenimiento@serimar.com / mant123</p>
-        </div>
       </div>
     </div>
   );
